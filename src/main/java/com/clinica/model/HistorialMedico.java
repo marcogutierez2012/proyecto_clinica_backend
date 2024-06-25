@@ -23,11 +23,11 @@ public class HistorialMedico {
 	
     @ManyToOne
     @JoinColumn(name = "id_paciente")
-	private Paciente paciente;
+	private Usuario paciente;
     
     @ManyToOne
     @JoinColumn(name = "id_medico")
-	private Medico medico;
+	private Usuario medico;
 	
     @Column(nullable = false)
 	private LocalDateTime fechaConsulta;

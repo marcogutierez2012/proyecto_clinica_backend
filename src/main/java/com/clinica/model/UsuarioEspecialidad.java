@@ -1,8 +1,5 @@
 package com.clinica.model;
 
-import java.time.LocalDateTime;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,28 +11,18 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "cita_medica")
-public class CitaMedica {
+@Table(name = "usuario_especialidad")
+public class UsuarioEspecialidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    @Column(nullable = false)
-	private LocalDateTime fechaCita;
-	
     @ManyToOne
-    @JoinColumn(name = "id_paciente")
-	private Usuario paciente;
-	
+    @JoinColumn(name="id_medico")
+    private Usuario medico;
+    
     @ManyToOne
-    @JoinColumn(name = "id_medico")
-	private Usuario medico;
-	
-    @Column(nullable = false)
-	private int estado;
-	
-    @Column(nullable = false)
-	private String motivoCita;
-	
+    @JoinColumn(name="id_especialidad")
+    private Especialidad especialidad;
 }

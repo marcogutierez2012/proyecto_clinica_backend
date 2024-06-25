@@ -1,5 +1,7 @@
 package com.clinica.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,24 @@ public class Usuario {
 	
     @Column(nullable = false, unique = true)
 	private String usuario;
+    
+    @Column(nullable = false)
+   	private String nombre;
+   	
+    @Column(nullable = false)
+   	private String apellido;
+   	
+    @Column(nullable = false, unique = true)
+   	private String dni;
+   	
+    @Column(nullable = false)
+   	private Date fechaNacimiento;
+   	
+    @Column(nullable = false)
+   	private String genero;
+   	
+    @Column(nullable = false)
+   	private String direccion;
 	
     @Column(nullable = false, unique = true)
 	private String correo;
