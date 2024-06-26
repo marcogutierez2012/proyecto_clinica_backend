@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clinica.model.Usuario;
 import com.clinica.service.UsuarioService;
 
+import jakarta.websocket.server.PathParam;
+
+@CrossOrigin
 @RestController
 @RequestMapping("usuario")
 public class UsuarioController {
@@ -57,7 +64,7 @@ public class UsuarioController {
 		}
 	}
 	
-	@PostMapping("/actualizar")
+	@PutMapping("/actualizar")
 	public ResponseEntity<?> actualizarUsuario(@RequestBody Usuario usuario){
 		Usuario usuarioExistente = usuarioService.obtenerUsuarioPorId(usuario.getId());
 	    if (usuarioExistente == null) {
@@ -90,13 +97,13 @@ public class UsuarioController {
 		}
 	}
 	
-	@PostMapping("/eliminar/{idusuario}")
-	public ResponseEntity<?> eliminarUsuario(@Param(value = "idusuario") Long id){
-		try {
-			usuarioService.eliminarUsuario(id);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuario eliminado correctamente.");
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se produjo un error al eliminar usuario");
-		}
+	@DeleteMapping("/eliminar/{idusuario}")
+	public ResponseEntity<?> eliminarUsuario(@PathVariable("idusuario") Long id) {
+	    try {
+	        usuarioService.eliminarUsuario(id);
+	        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuario eliminado correctamente.");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se produjo un error al eliminar usuario");
+	    }
 	}
 }

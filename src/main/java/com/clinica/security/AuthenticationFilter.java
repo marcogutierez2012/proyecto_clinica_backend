@@ -1,4 +1,4 @@
-package com.clinica.security;
+/*package com.clinica.security;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,4 +36,4 @@ public class AuthenticationFilter extends GenericFilterBean {
         filterChain.doFilter(request, response);
     }
 
-}
+}*/

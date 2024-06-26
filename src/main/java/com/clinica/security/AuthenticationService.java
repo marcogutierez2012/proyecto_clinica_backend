@@ -1,4 +1,4 @@
-package com.clinica.security;
+/*package com.clinica.security;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -21,3 +21,4 @@ public class AuthenticationService {
     }
 	
 }
+*/

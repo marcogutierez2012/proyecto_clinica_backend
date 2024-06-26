@@ -3,7 +3,7 @@ package com.clinica.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.clinica.model.Usuario;
@@ -16,13 +16,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	@Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+	//@Autowired
+    //private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	public Usuario registrarUsuario(Usuario usuario) {
-		String passwordEncriptado=passwordEncoder.encode(usuario.getPassword());
-		usuario.setPassword(passwordEncriptado);
+		//String passwordEncriptado=passwordEncoder.encode(usuario.getPassword());
+		//usuario.setPassword(passwordEncriptado);
 		return usuarioRepository.save(usuario);
 	}
 
@@ -52,8 +52,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarioactualizar.setCorreo(usuario.getCorreo());
 		usuarioactualizar.setDireccion(usuario.getDireccion());
 		usuarioactualizar.setTelefono(usuario.getTelefono());
-		String passwordEncriptado=passwordEncoder.encode(usuario.getPassword());
-		usuarioactualizar.setPassword(passwordEncriptado);
+		usuarioactualizar.setPassword(usuario.getPassword());
+		//String passwordEncriptado=passwordEncoder.encode(usuario.getPassword());
+		//usuarioactualizar.setPassword(passwordEncriptado);
 		
 		return usuarioRepository.save(usuarioactualizar);
 	}
@@ -61,7 +62,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public void eliminarUsuario(Long id) {
 		Usuario usuarioeliminar=usuarioRepository.findById(id);
-		usuarioRepository.deleteById(usuarioeliminar.getId());
+		usuarioeliminar.setEstado(1);
+		usuarioRepository.save(usuarioeliminar);
 	}
 
 	@Override
@@ -76,7 +78,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public List<Usuario> obtenerUsuarios() {
-		return usuarioRepository.findAll();
+		return usuarioRepository.usuariosActivos();
 	}
 	
 }

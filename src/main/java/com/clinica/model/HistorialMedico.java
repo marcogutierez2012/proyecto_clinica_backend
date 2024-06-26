@@ -40,5 +40,9 @@ public class HistorialMedico {
 	
     @Column(nullable = false)
 	private String notaAdicional;
+    
+    @Column(nullable = false)
+    private int estado;
+    
 	
 }

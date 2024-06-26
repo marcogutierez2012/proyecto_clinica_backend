@@ -50,7 +50,10 @@ public class Usuario {
 	
     @Column(nullable = false)
 	private String password;
-	
+    
+    @Column(nullable = false)
+    private int estado;
+    
     @ManyToOne
     @JoinColumn(name = "id_rol")
 	private Rol rol;

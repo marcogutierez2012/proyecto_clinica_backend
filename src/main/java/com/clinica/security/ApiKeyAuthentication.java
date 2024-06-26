@@ -1,4 +1,4 @@
-package com.clinica.security;
+/*package com.clinica.security;
 
 import java.util.Collection;
 
@@ -25,5 +25,5 @@ public class ApiKeyAuthentication extends AbstractAuthenticationToken{
         return apiKey;
     }
     
-}
+}*/
 
