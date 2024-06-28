@@ -10,4 +10,6 @@ public interface EspecialidadService {
 	
 	List<Especialidad> listarEspecialidades();
 	
+	boolean existeNombreEspecialidad(String nombre);
+	
 }

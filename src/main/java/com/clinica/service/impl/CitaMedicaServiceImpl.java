@@ -3,11 +3,13 @@ package com.clinica.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.clinica.model.CitaMedica;
 import com.clinica.repository.CitaMedicaRepository;
 import com.clinica.service.CitaMedicaService;
 
+@Service
 public class CitaMedicaServiceImpl implements CitaMedicaService{
 
 	@Autowired
