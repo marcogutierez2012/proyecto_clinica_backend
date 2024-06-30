@@ -19,7 +19,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	Usuario findById(Long id);
 	
-	@Query("SELECT u FROM Usuario u WHERE u.estado = 0")
+	Usuario findByUsuario(String usuario);
+	
+	
+	@Query("SELECT u FROM Usuario u WHERE u.estado = 1")
 	List<Usuario> usuariosActivos();
 	
 	void deleteById(Long id);

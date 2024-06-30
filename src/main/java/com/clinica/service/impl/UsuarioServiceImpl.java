@@ -3,9 +3,11 @@ package com.clinica.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.clinica.excepciones.UsuarioFoundException;
 import com.clinica.model.Usuario;
 import com.clinica.repository.UsuarioRepository;
 import com.clinica.service.UsuarioService;
@@ -16,13 +18,22 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	//@Autowired
-    //private BCryptPasswordEncoder passwordEncoder;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
-	public Usuario registrarUsuario(Usuario usuario) {
-		//String passwordEncriptado=passwordEncoder.encode(usuario.getPassword());
-		//usuario.setPassword(passwordEncriptado);
+	public Usuario registrarUsuario(Usuario usuario) throws UsuarioFoundException {
+
+		Usuario usuarioLocal = usuarioRepository.findByUsuario(usuario.getUsuario());
+		 if(usuarioLocal != null){
+	            System.out.println("El usuario ya existe");
+	            throw new UsuarioFoundException("El usuario ya existe");
+	        }
+		 
+		 String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+	        usuario.setPassword(encodedPassword);
+		 
 		return usuarioRepository.save(usuario);
 	}
 
@@ -52,9 +63,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarioactualizar.setCorreo(usuario.getCorreo());
 		usuarioactualizar.setDireccion(usuario.getDireccion());
 		usuarioactualizar.setTelefono(usuario.getTelefono());
-		usuarioactualizar.setPassword(usuario.getPassword());
-		//String passwordEncriptado=passwordEncoder.encode(usuario.getPassword());
-		//usuarioactualizar.setPassword(passwordEncriptado);
 		
 		return usuarioRepository.save(usuarioactualizar);
 	}

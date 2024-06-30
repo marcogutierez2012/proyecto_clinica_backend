@@ -57,5 +57,6 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "id_rol")
 	private Rol rol;
+    
 	
 }

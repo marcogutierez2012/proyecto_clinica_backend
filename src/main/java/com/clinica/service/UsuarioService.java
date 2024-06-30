@@ -2,11 +2,12 @@ package com.clinica.service;
 
 import java.util.List;
 
+import com.clinica.excepciones.UsuarioFoundException;
 import com.clinica.model.Usuario;
 
 public interface UsuarioService {
 
-	Usuario registrarUsuario(Usuario usuario);
+	Usuario registrarUsuario(Usuario usuario) throws UsuarioFoundException;
 	
 	List<Usuario> obtenerUsuarios();
 	
