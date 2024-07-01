@@ -55,13 +55,14 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public Usuario actualizarUsuario(Usuario usuario) {
 		Usuario usuarioactualizar=usuarioRepository.findById(usuario.getId());
+		usuarioactualizar.setUsuario(usuario.getUsuario());
 		usuarioactualizar.setNombre(usuario.getNombre());
 		usuarioactualizar.setApellido(usuario.getApellido());
 		usuarioactualizar.setDni(usuario.getDni());
 		usuarioactualizar.setFechaNacimiento(usuario.getFechaNacimiento());
 		usuarioactualizar.setGenero(usuario.getGenero());
-		usuarioactualizar.setCorreo(usuario.getCorreo());
 		usuarioactualizar.setDireccion(usuario.getDireccion());
+		usuarioactualizar.setCorreo(usuario.getCorreo());
 		usuarioactualizar.setTelefono(usuario.getTelefono());
 		
 		return usuarioRepository.save(usuarioactualizar);
@@ -70,7 +71,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public void eliminarUsuario(Long id) {
 		Usuario usuarioeliminar=usuarioRepository.findById(id);
-		usuarioeliminar.setEstado(1);
+		usuarioeliminar.setEstado(0);
 		usuarioRepository.save(usuarioeliminar);
 	}
 

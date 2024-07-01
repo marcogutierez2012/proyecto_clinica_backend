@@ -19,7 +19,7 @@ import com.clinica.model.Usuario;
 import com.clinica.service.UsuarioService;
 
 
-@CrossOrigin
+@PreAuthorize("hasRole('ADMIN')")
 @RestController
 @RequestMapping("usuario")
 public class UsuarioController {
@@ -28,7 +28,7 @@ public class UsuarioController {
 	UsuarioService usuarioService;
 		
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	@GetMapping("/listar")
 	public ResponseEntity<?> listarUsuarios() {
 		try {
@@ -98,12 +98,13 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/eliminar/{idusuario}")
-	public ResponseEntity<?> eliminarUsuario(@PathVariable("idusuario") Long id) {
+	public ResponseEntity<String> eliminarUsuario(@PathVariable("idusuario") Long id) {
 	    try {
 	        usuarioService.eliminarUsuario(id);
-	        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuario eliminado correctamente.");
+	        return ResponseEntity.ok("Usuario eliminado correctamente.");
 	    } catch (Exception e) {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se produjo un error al eliminar usuario");
 	    }
 	}
+
 }

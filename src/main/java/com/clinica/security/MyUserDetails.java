@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.clinica.model.Rol;
 import com.clinica.model.Usuario;
+
+
+
 
 public class MyUserDetails implements UserDetails {
 
@@ -22,6 +25,9 @@ public class MyUserDetails implements UserDetails {
 		this.usuario = usuario;
 	}
 	
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -51,7 +57,50 @@ public class MyUserDetails implements UserDetails {
 		
 		return usuario.getUsuario();
 	}
+	
+	public Long getId() {
+		return usuario.getId();
+	}
+	
+	
+	
+	public String getApellido() {
+		
+		return usuario.getApellido();
+	}
+	
+	public String getCorreo() {
+		
+		return usuario.getCorreo();
+	}
+	
+	public String getDireccion() {
+		
+		return usuario.getDireccion();
+	}
+	
+	public String getDni() {
+		
+		return usuario.getDni();
+	
+	}
 
+	public Date getFechaNacimiento() {
+		return usuario.getFechaNacimiento();
+	}
+	
+	public String getGenero() {
+		return usuario.getGenero();
+	}
+	
+	public String getNombre() {
+		return usuario.getNombre();
+	}
+	
+	public String getTelefono() {
+		return usuario.getTelefono();
+	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -69,6 +118,8 @@ public class MyUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return usuario.getEstado()==1;
 	}
+	
+	
 }

@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Entity
@@ -34,6 +36,7 @@ public class Usuario {
    	private String dni;
    	
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
    	private Date fechaNacimiento;
    	
     @Column(nullable = false)

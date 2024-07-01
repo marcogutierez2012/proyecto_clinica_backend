@@ -1,6 +1,9 @@
 package com.clinica.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,13 +18,14 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "cita_medica")
-public class CitaMedica {
+public class CitaMedica implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime fechaCita;
 	
     @ManyToOne

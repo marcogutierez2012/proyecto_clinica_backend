@@ -1,6 +1,9 @@
 package com.clinica.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +18,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "historial_medico")
-public class HistorialMedico {
+public class HistorialMedico implements Serializable{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +32,10 @@ public class HistorialMedico {
     @JoinColumn(name = "id_medico")
 	private Usuario medico;
 	
+    
     @Column(nullable = false)
-	private LocalDateTime fechaConsulta;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	private LocalDateTime fechaConsulta= LocalDateTime.now();;
 	
     @Column(nullable = false)
 	private String diagnostico;

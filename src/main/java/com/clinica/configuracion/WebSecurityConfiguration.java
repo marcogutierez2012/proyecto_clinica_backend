@@ -38,7 +38,7 @@ public class WebSecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                     .requestMatchers("/signup", "/login").permitAll()
-                    .requestMatchers("/usuario/listar").hasRole("ADMIN")
+                    .requestMatchers("/usuario/**","/cita-medica/**","/historial-medico/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
