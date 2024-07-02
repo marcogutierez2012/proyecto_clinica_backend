@@ -39,10 +39,8 @@ public class CitaMedicaController {
 	public ResponseEntity<?> registrarCitaMedica(@RequestBody CitaMedica citaMedica){
 		try {
 			CitaMedica nuevacita=citaMedicaService.registrar(citaMedica);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Cita medica regitrada correctamente. ID :"
-					+nuevacita.getId()+" Paciente : "+nuevacita.getPaciente().getNombre()+" "+nuevacita.getPaciente().getApellido()
-					+" Medico : "+nuevacita.getMedico().getNombre()+" "+nuevacita.getMedico().getApellido()
-					+" Fecha : "+nuevacita.getFechaCita());
+			System.out.println("Fecha de cita recibida: " + citaMedica.getFechaCita());
+			return ResponseEntity.status(HttpStatus.CREATED).body("Cita medica regitrada correctamente");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se produjo un error al registrar la cita medica");
 		}

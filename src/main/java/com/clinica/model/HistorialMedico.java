@@ -1,6 +1,7 @@
 package com.clinica.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,12 +14,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "historial_medico")
-public class HistorialMedico implements Serializable{
+public class HistorialMedico{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +37,8 @@ public class HistorialMedico implements Serializable{
 	
     
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	private LocalDateTime fechaConsulta= LocalDateTime.now();;
+    @Temporal(TemporalType.DATE)
+	private LocalDate fechaConsulta;
 	
     @Column(nullable = false)
 	private String diagnostico;

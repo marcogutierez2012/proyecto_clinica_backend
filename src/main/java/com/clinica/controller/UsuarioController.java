@@ -101,7 +101,7 @@ public class UsuarioController {
 	public ResponseEntity<String> eliminarUsuario(@PathVariable("idusuario") Long id) {
 	    try {
 	        usuarioService.eliminarUsuario(id);
-	        return ResponseEntity.ok("Usuario eliminado correctamente.");
+	        return ResponseEntity.ok("Usuario eliminado correctamente compare.");
 	    } catch (Exception e) {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se produjo un error al eliminar usuario");
 	    }
